@@ -14,6 +14,9 @@ class ConfigProvider
         $this->loadEnvConfig();
     }
 
+    /**
+     * @return void
+     */
     private function loadEnvConfig(): void
     {
         $envFile = __DIR__ . '/../../.env';
@@ -24,7 +27,12 @@ class ConfigProvider
         }
     }
 
-    public function get(string $key, $default = null)
+    /**
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function get(string $key, mixed $default = null): mixed
     {
         return $this->config[$key] ?? $default;
     }

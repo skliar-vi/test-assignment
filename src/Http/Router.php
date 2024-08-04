@@ -68,7 +68,6 @@ class Router extends AbstractRouter
 
                     if ($response instanceof Response) {
                         $response->send();
-                        return;
                     }
                 });
                 return;

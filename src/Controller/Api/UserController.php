@@ -24,7 +24,9 @@ class UserController
     public function getAll(Request $request): JsonResponse
     {
         return new JsonResponse(
-            (new UserCollection($this->userRepository->getAll()))->toArray()
+            (new UserCollection(
+                $this->userRepository->getAll()
+            ))->toArray()
         );
     }
 
