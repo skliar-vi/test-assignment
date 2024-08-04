@@ -14,4 +14,11 @@ use App\Util\Container;
 
 $container = Container::getInstance();
 
+$container->bind(ConfigProvider::class, function () {
+    return new ConfigProvider([
+        'USER_DATA_SOURCE_PATH' => realpath(__DIR__ . '/../data/users.json'),
+        'DEBUG' => false,
+    ]);
+});
+
 return $container;
