@@ -10,8 +10,9 @@ use App\Util\Container;
 $container = Container::getInstance();
 
 $userController = $container->make(UserController::class);
+$authMiddleware = $container->make(AuthenticationMiddleware::class);
 
 $router = Router::getInstance();
 
-$router->get('/api/users', [$userController, 'getAll']);
-$router->get('/api/users/{id}', [$userController, 'find']);
+$router->get('/api/users', [$userController, 'getAll'], [$authMiddleware]);
+$router->get('/api/users/{id}', [$userController, 'find'], [$authMiddleware]);
