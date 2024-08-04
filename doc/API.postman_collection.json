@@ -1,0 +1,521 @@
+{
+	"info": {
+		"_postman_id": "46afe8bc-5b34-475c-b14f-af63a3f23013",
+		"name": "Example PHP API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18780263"
+	},
+	"item": [
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "List",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "example@example.com",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{apiPrefix}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{apiPrefix}}",
+										"users"
+									]
+								},
+								"description": "Retrieve list of all users"
+							},
+							"response": [
+								{
+									"name": "401 Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/{{apiPrefix}}/users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"{{apiPrefix}}",
+												"users"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "localhost:8080"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 04 Aug 2024 22:45:53 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.9"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache"
+										},
+										{
+											"key": "X-Request-ID",
+											"value": "66b004a13c8c6"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "WWW-Authenticate",
+											"value": "Basic realm=\"Restricted Area\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Unauthorized\"\n}"
+								},
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/{{apiPrefix}}/users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"{{apiPrefix}}",
+												"users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "localhost:8080"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 04 Aug 2024 22:47:06 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.9"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache"
+										},
+										{
+											"key": "X-Request-ID",
+											"value": "66b004eadfa9c"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"example@example.com\",\n        \"age\": null\n    },\n    {\n        \"id\": 2,\n        \"name\": \"John Doe\",\n        \"email\": \"example1@example.com\",\n        \"age\": 25\n    },\n    {\n        \"id\": 3,\n        \"name\": \"John Doe\",\n        \"email\": \"example2@example.com\",\n        \"age\": null\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "GetById",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "example@example.com",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{apiPrefix}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{apiPrefix}}",
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "5"
+										}
+									]
+								},
+								"description": "Retrieve user by ID"
+							},
+							"response": [
+								{
+									"name": "401 Unauthorized",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/{{apiPrefix}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"{{apiPrefix}}",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "localhost:8080"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 04 Aug 2024 22:48:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.9"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache"
+										},
+										{
+											"key": "X-Request-ID",
+											"value": "66b00534d00c7"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "WWW-Authenticate",
+											"value": "Basic realm=\"Restricted Area\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Unauthorized\"\n}"
+								},
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/{{apiPrefix}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"{{apiPrefix}}",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "localhost:8080"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 04 Aug 2024 22:48:52 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.9"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache"
+										},
+										{
+											"key": "X-Request-ID",
+											"value": "66b0055442595"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"email\": \"example@example.com\",\n    \"age\": null\n}"
+								},
+								{
+									"name": "404 Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/{{apiPrefix}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"{{apiPrefix}}",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "5"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "localhost:8080"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 04 Aug 2024 22:49:22 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.9"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache"
+										},
+										{
+											"key": "X-Request-ID",
+											"value": "66b00572938c0"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"User not found\"\n}"
+								}
+							]
+						}
+					],
+					"description": "Contains API request for user entity",
+					"auth": {
+						"type": "basic"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{apiPrefix}}/ping",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{apiPrefix}}",
+								"ping"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/{{apiPrefix}}/ping",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{apiPrefix}}",
+										"ping"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8080"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 04 Aug 2024 22:45:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.9"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache"
+								},
+								{
+									"key": "X-Request-ID",
+									"value": "66b0049c46064"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"pong\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "ko",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "apiPrefix",
+			"value": "api"
+		}
+	]
+}
