@@ -5,12 +5,36 @@ namespace App\Http\Response;
 use App\Http\Enum\HttpStatusCodes;
 use InvalidArgumentException;
 
+/**
+ * Response class represents an HTTP response.
+ *
+ * This class provides methods to set the content, status code, and headers of an HTTP response,
+ * and to send the response to the client.
+ */
 class Response
 {
+    /**
+     * @var array The headers of the response.
+     */
     private array $headers = [];
+
+    /**
+     * @var string The content of the response.
+     */
     private string $content = '';
+
+    /**
+     * @var int|HttpStatusCodes The status code of the response.
+     */
     private int|HttpStatusCodes $statusCode = HttpStatusCodes::OK;
 
+    /**
+     * Response constructor.
+     *
+     * @param string $content The content of the response. Defaults to an empty string.
+     * @param int|HttpStatusCodes $statusCode The status code of the response. Defaults to HttpStatusCodes::OK.
+     * @param array $headers The headers of the response. Defaults to an empty array.
+     */
     public function __construct(string $content = '', int|HttpStatusCodes $statusCode = HttpStatusCodes::OK, array $headers = [])
     {
         $this->setContent($content);
@@ -23,8 +47,10 @@ class Response
     }
 
     /**
-     * @param string $name
-     * @param string|null $value
+     * Sets a header for the response.
+     *
+     * @param string $name The name of the header.
+     * @param string|null $value The value of the header. Defaults to null.
      * @return $this
      */
     public function setHeader(string $name, string $value = null): self
@@ -35,7 +61,9 @@ class Response
     }
 
     /**
-     * @param string $content
+     * Sets the content of the response.
+     *
+     * @param string $content The content to set.
      * @return $this
      */
     public function setContent(string $content): self
@@ -46,9 +74,11 @@ class Response
     }
 
     /**
-     * @param int|HttpStatusCodes $statusCode
+     * Sets the status code of the response.
+     *
+     * @param int|HttpStatusCodes $statusCode The status code to set.
      * @return $this
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException If the status code is invalid.
      */
     public function setStatusCode(int|HttpStatusCodes $statusCode): self
     {
@@ -62,6 +92,8 @@ class Response
     }
 
     /**
+     * Sends the headers of the response.
+     *
      * @return void
      */
     final public function sendHeaders(): void
@@ -72,6 +104,8 @@ class Response
     }
 
     /**
+     * Sends the status code of the response.
+     *
      * @return void
      */
     final public function sendStatusCode(): void
@@ -82,6 +116,8 @@ class Response
     }
 
     /**
+     * Sends the content of the response.
+     *
      * @return void
      */
     final public function sendContent(): void
@@ -90,6 +126,8 @@ class Response
     }
 
     /**
+     * Sends the response to the client.
+     *
      * @return never
      */
     public function send(): never
@@ -101,7 +139,9 @@ class Response
     }
 
     /**
-     * @return string
+     * Gets the content of the response.
+     *
+     * @return string The content of the response.
      */
     public function getContent(): string
     {
@@ -109,7 +149,9 @@ class Response
     }
 
     /**
-     * @return array
+     * Gets the headers of the response.
+     *
+     * @return array The headers of the response.
      */
     public function getHeaders(): array
     {
@@ -117,7 +159,9 @@ class Response
     }
 
     /**
-     * @return int|HttpStatusCodes
+     * Gets the status code of the response.
+     *
+     * @return int|HttpStatusCodes The status code of the response.
      */
     public function getStatusCode(): int|HttpStatusCodes
     {
@@ -125,6 +169,8 @@ class Response
     }
 
     /**
+     * Applies default headers to the response.
+     *
      * @return void
      */
     private function applyDefaultHeaders(): void

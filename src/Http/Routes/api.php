@@ -8,6 +8,10 @@ use App\Http\Router;
 use App\Middleware\AuthenticationMiddleware;
 use App\Util\Container;
 
+/**
+ * Main script to initialize controllers, middleware, and set up routes for the application.
+ */
+
 $container = Container::getInstance();
 
 $userController = $container->make(UserController::class);

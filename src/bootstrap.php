@@ -13,12 +13,19 @@ use App\Repository\UserRepository;
 use App\Strategies\Auth\BasicAuthStrategy;
 use App\Util\Container;
 
+/**
+ * Main script to bind dependencies to the container.
+ *
+ * This script initializes the Container instance and binds various services and dependencies to it.
+ */
+
 $container = Container::getInstance();
 
 $container->bind(ConfigProvider::class, function () {
     return new ConfigProvider([
         'USER_DATA_SOURCE_PATH' => realpath(__DIR__ . '/../data/users.json'),
         'DEBUG' => false,
+        'ROUTES_PATH' => realpath(__DIR__ . '/Http/routes/api.php'),
     ]);
 });
 $container->bind(UserJsonDataSource::class, function ($container) {

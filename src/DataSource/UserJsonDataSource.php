@@ -4,18 +4,31 @@ namespace App\DataSource;
 
 use App\Exception\DataSourceException;
 
+/**
+ * UserJsonDataSource class provides user data from a JSON file.
+ */
 class UserJsonDataSource implements UserDataSourceInterface
 {
+    /**
+     * @var string The file path to the JSON file containing user data.
+     */
     protected string $filePath;
 
+    /**
+     * UserJsonDataSource constructor.
+     *
+     * @param string $filePath The path to the JSON file containing user data.
+     */
     public function __construct(string $filePath)
     {
         $this->filePath = $filePath;
     }
 
     /**
-     * @return array
-     * @throws DataSourceException
+     * Retrieves all users from the JSON file.
+     *
+     * @return array An array of all users.
+     * @throws DataSourceException If the file cannot be read or contains invalid JSON.
      */
     public function getAll(): array
     {
@@ -23,15 +36,17 @@ class UserJsonDataSource implements UserDataSourceInterface
     }
 
     /**
-     * @param array $criteria
-     * @return array|null
-     * @throws DataSourceException
+     * Finds a user by specific criteria in the JSON file.
+     *
+     * @param array $criteria The criteria to search for the user.
+     * @return array|null An array representing the user data if found, null otherwise.
+     * @throws DataSourceException If the file cannot be read or contains invalid JSON.
      */
     public function findOne(array $criteria): ?array
     {
         $rawUsers = $this->getAll();
 
-        foreach ($rawUsers as $key => $rawUser) {
+        foreach ($rawUsers as $rawUser) {
             $found = true;
 
             foreach ($criteria as $field => $value) {
@@ -41,19 +56,19 @@ class UserJsonDataSource implements UserDataSourceInterface
                 }
             }
 
-            if (!$found) {
-                continue;
+            if ($found) {
+                return $rawUser;
             }
-
-            return $rawUser;
         }
 
         return null;
     }
 
     /**
-     * @return array
-     * @throws DataSourceException
+     * Retrieves user data from the JSON file.
+     *
+     * @return array An array of user data from the JSON file.
+     * @throws DataSourceException If the file cannot be read or contains invalid JSON.
      */
     private function getFromFile(): array
     {

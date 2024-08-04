@@ -8,14 +8,27 @@ use App\Http\Enum\HttpStatusCodes;
 use App\Http\Response\JsonResponse;
 use App\Repository\UserRepository;
 
+/**
+ * BasicAuthStrategy handles basic authentication logic.
+ *
+ * This class implements the AuthStrategyInterface to provide methods for checking if a user is logged in
+ * and sending an unauthenticated response.
+ */
 class BasicAuthStrategy implements AuthStrategyInterface
 {
+    /**
+     * BasicAuthStrategy constructor.
+     *
+     * @param UserRepository $userRepository The user repository instance.
+     */
     public function __construct(protected readonly UserRepository $userRepository)
     {
     }
 
     /**
-     * @return bool
+     * Checks if the user is logged in using basic authentication.
+     *
+     * @return bool True if the user is logged in, false otherwise.
      */
     public function isLoggedIn(): bool
     {
@@ -36,6 +49,10 @@ class BasicAuthStrategy implements AuthStrategyInterface
     }
 
     /**
+     * Sends a response indicating the user is unauthenticated.
+     *
+     * This method sends a JSON response with a 401 Unauthorized status code and a WWW-Authenticate header.
+     *
      * @return void
      */
     public function sendUnauthenticatedResponse(): void

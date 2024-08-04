@@ -1,18 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\DataSource\UserDataSourceInterface;
 use App\Entity\User;
 
+/**
+ * UserRepository class handles the retrieval and deserialization of User entities from a data source.
+ */
 class UserRepository
 {
-    public function __construct(protected UserDataSourceInterface $dataSource)
+    /**
+     * UserRepository constructor.
+     *
+     * @param UserDataSourceInterface $dataSource The data source for user data.
+     */
+    public function __construct(protected readonly UserDataSourceInterface $dataSource)
     {
     }
 
     /**
-     * @return User[]
+     * Retrieves all users from the data source.
+     *
+     * @return User[] An array of User entities.
      */
     public function getAll(): array
     {
@@ -20,18 +32,26 @@ class UserRepository
     }
 
     /**
-     * @param array $criteria
-     * @return User|null
+     * Finds a user by specific criteria from the data source.
+     *
+     * @param array $criteria The criteria to search for the user.
+     * @return User|null The User entity if found, null otherwise.
      */
     public function findOne(array $criteria): ?User
     {
+        if (!$rawData = $this->dataSource->findOne($criteria)) {
+            return null;
+        }
+
         return $this->deserialize($this->dataSource->findOne($criteria));
     }
 
     /**
-     * @param array $rawData
-     * @param bool $arrayOfArrays
-     * @return User[]|User
+     * Deserializes raw data into User entities.
+     *
+     * @param array $rawData The raw data to be deserialized.
+     * @param bool $arrayOfArrays Indicates if the raw data represents an array of users.
+     * @return User[]|User An array of User entities or a single User entity.
      */
     public function deserialize(array $rawData, bool $arrayOfArrays = false): array|User
     {
@@ -49,8 +69,10 @@ class UserRepository
     }
 
     /**
-     * @param array $rawData
-     * @return User
+     * Constructs a User entity from raw data.
+     *
+     * @param array $rawData The raw data to construct the User entity from.
+     * @return User The constructed User entity.
      */
     public function constructUser(array $rawData): User
     {

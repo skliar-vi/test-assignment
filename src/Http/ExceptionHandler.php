@@ -11,10 +11,15 @@ use App\Http\Enum\HttpStatusCodes;
 use App\Http\Response\JsonResponse;
 use App\Util\Container;
 
+/**
+ * ExceptionHandler class handles exceptions and provides an appropriate JSON response.
+ */
 class ExceptionHandler
 {
     /**
-     * @param \Throwable $e
+     * Handles the given exception and sends a JSON response.
+     *
+     * @param \Throwable $e The exception to handle.
      * @return never
      */
     public function handle(\Throwable $e): never
@@ -40,7 +45,9 @@ class ExceptionHandler
     }
 
     /**
-     * @return bool
+     * Determines if debug mode is enabled.
+     *
+     * @return bool True if debug mode is enabled, false otherwise.
      */
     private function isDebugModeEnabled(): bool
     {

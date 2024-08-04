@@ -5,10 +5,15 @@ namespace App\Collection;
 use App\Entity\User;
 use App\Normalizer\UserNormaliser;
 
+/**
+ * UserCollection class extends AbstractCollection to handle a collection of User entities.
+ */
 class UserCollection extends AbstractCollection
 {
     /**
-     * @return array
+     * Converts the collection of User entities to an array of normalized data.
+     *
+     * @return array An array of normalized User data.
      */
     public function toArray(): array
     {

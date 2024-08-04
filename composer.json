@@ -11,5 +11,7 @@
             "name": "vladislavow",
             "email": "vsklyar4@gmail.com"
         }
-    ]
+    ],
+    "require": {},
+    "require-dev": {}
 }
