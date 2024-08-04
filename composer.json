@@ -1,0 +1,15 @@
+{
+    "name": "vladislavow/webserver-example",
+    "description": "Simple PHP WebServer example",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "vladislavow",
+            "email": "vsklyar4@gmail.com"
+        }
+    ]
+}
