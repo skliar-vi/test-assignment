@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "example@example.com",
+    "password": "$2y$10$DULiQvhx1OcUcEAUyO/XJeYPbrCowp3iiqcD581Ju8L6vI2ofPj/u"
+  },
+  {
+    "id": 2,
+    "name": "John Doe",
+    "email": "example1@example.com",
+    "password": "$2a$12$t9i4Vgvl2Y1j0kck0OXi8eJXY3tWFil3x4gLhD6kSlltFhp8GRAES",
+    "age": 25
+  },
+  {
+    "id": 3,
+    "name": "John Doe",
+    "email": "example2@example.com",
+    "password": "$2a$12$t9i4Vgvl2Y1j0kck0OXi8eJXY3tWFil3x4gLhD6kSlltFhp8GRAES"
+  }
+]

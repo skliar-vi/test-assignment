@@ -13,5 +13,10 @@ class Kernel implements KernelInterface
     {
         set_exception_handler([new ExceptionHandler(), 'handle']);
         set_error_handler([new ExceptionHandler(), 'handle']);
+
+        $router = Router::getInstance();
+
+        $router->loadRoutes(__DIR__ . '/Routes/api.php');
+        $router->dispatch(new Request());
     }
 }

@@ -20,5 +20,22 @@ $container->bind(ConfigProvider::class, function () {
         'DEBUG' => false,
     ]);
 });
+$container->bind(UserJsonDataSource::class, function ($container) {
+    return new UserJsonDataSource(
+        ($container->make(ConfigProvider::class))->get('USER_DATA_SOURCE_PATH')
+    );
+});
+$container->bind(UserRepository::class, function ($container) {
+    return new UserRepository($container->make(UserJsonDataSource::class));
+});
+$container->bind(UserController::class, function ($container) {
+    return new UserController($container->make(UserRepository::class));
+});
+$container->bind(BasicAuthStrategy::class, function ($container) {
+    return new BasicAuthStrategy($container->make(UserRepository::class));
+});
+$container->bind(AuthenticationMiddleware::class, function ($container) {
+    return new AuthenticationMiddleware($container->make(BasicAuthStrategy::class));
+});
 
 return $container;
