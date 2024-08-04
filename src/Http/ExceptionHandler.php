@@ -47,7 +47,7 @@ class ExceptionHandler
         $container = Container::getInstance();
 
         try {
-            return ($container->make(ConfigProvider::class))->get('DEBUG');
+            return (bool)($container->make(ConfigProvider::class))->get('DEBUG');
         } catch (\Exception $e) {
             return false;
         }

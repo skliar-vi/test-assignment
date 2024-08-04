@@ -5,7 +5,8 @@ declare(strict_types=1);
 require __DIR__ . '/../vendor/autoload.php';
 
 use App\Config\ConfigProvider;
-use App\Controller\Api\Auth\UserController;
+use App\Controller\Api\ExampleController;
+use App\Controller\Api\UserController;
 use App\DataSource\UserJsonDataSource;
 use App\Middleware\AuthenticationMiddleware;
 use App\Repository\UserRepository;
@@ -36,6 +37,9 @@ $container->bind(BasicAuthStrategy::class, function ($container) {
 });
 $container->bind(AuthenticationMiddleware::class, function ($container) {
     return new AuthenticationMiddleware($container->make(BasicAuthStrategy::class));
+});
+$container->bind(ExampleController::class, function ($container) {
+    return new ExampleController();
 });
 
 return $container;

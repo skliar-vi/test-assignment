@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Api\Auth;
+namespace App\Controller\Api;
 
 use App\Collection\UserCollection;
 use App\Exception\HttpException;
