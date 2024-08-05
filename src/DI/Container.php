@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Util;
+namespace App\DI;
 
 /**
  * Container class implements a simple dependency injection container.
  *
  * This class provides methods to bind and resolve dependencies, following the singleton pattern.
  */
-class Container
+final class Container
 {
     /**
      * The single instance of the container.
@@ -26,18 +26,14 @@ class Container
     private array $bindings = [];
 
     /**
-     * Private constructor to prevent creating a new instance via the `new` operator.
+     * Private constructor to prevent creating a new instance of the container.
      */
-    private function __construct()
+    final private function __construct()
     {
     }
 
     /**
      * Binds a resolver callable to a name in the container.
-     *
-     * @param string $name The name of the binding.
-     * @param callable $resolver The resolver callable.
-     * @return void
      */
     public function bind(string $name, callable $resolver): void
     {
@@ -47,8 +43,6 @@ class Container
     /**
      * Resolves a binding by name and returns the result of the resolver callable.
      *
-     * @param string $name The name of the binding.
-     * @return mixed The result of the resolver callable.
      * @throws \Exception If the binding is not found.
      */
     public function make(string $name): mixed
@@ -62,8 +56,6 @@ class Container
 
     /**
      * Returns the single instance of the container.
-     *
-     * @return Container The single instance of the container.
      */
     public static function getInstance(): Container
     {
@@ -72,5 +64,22 @@ class Container
         }
 
         return self::$instance;
+    }
+
+    /**
+     * Prevents cloning the instance of the container.
+     */
+    final protected function __clone()
+    {
+    }
+
+    /**
+     *  Unserialize method to prevent unserializing of the instance throws the exception.
+     *
+     * @throws \Exception
+     */
+    public function __wakeup()
+    {
+        throw new \Exception("Cannot unserialize a singleton.");
     }
 }

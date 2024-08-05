@@ -28,7 +28,7 @@ class BasicAuthStrategy implements AuthStrategyInterface
     /**
      * Checks if the user is logged in using basic authentication.
      *
-     * @return bool True if the user is logged in, false otherwise.
+     * @return bool True if the user is logged in.
      */
     public function isLoggedIn(): bool
     {
@@ -42,7 +42,7 @@ class BasicAuthStrategy implements AuthStrategyInterface
         $user = $this->userRepository->findOne(['email' => $authenticatedEmail]);
 
         if (!$user || !password_verify($authenticatedPassword, $user->getPassword())) {
-            return false;
+            $this->sendUnauthenticatedResponse();
         }
 
         return true;
@@ -55,7 +55,7 @@ class BasicAuthStrategy implements AuthStrategyInterface
      *
      * @return void
      */
-    public function sendUnauthenticatedResponse(): void
+    private function sendUnauthenticatedResponse(): void
     {
         (new JsonResponse(
             ['error' => 'Unauthorized'],

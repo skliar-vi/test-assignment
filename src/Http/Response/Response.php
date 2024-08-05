@@ -14,27 +14,20 @@ use InvalidArgumentException;
 class Response
 {
     /**
-     * @var array The headers of the response.
+     * The headers of the response.
      */
     private array $headers = [];
 
     /**
-     * @var string The content of the response.
+     * The content of the response.
      */
     private string $content = '';
 
     /**
-     * @var int|HttpStatusCodes The status code of the response.
+     *  The status code of the response.
      */
     private int|HttpStatusCodes $statusCode = HttpStatusCodes::OK;
 
-    /**
-     * Response constructor.
-     *
-     * @param string $content The content of the response. Defaults to an empty string.
-     * @param int|HttpStatusCodes $statusCode The status code of the response. Defaults to HttpStatusCodes::OK.
-     * @param array $headers The headers of the response. Defaults to an empty array.
-     */
     public function __construct(string $content = '', int|HttpStatusCodes $statusCode = HttpStatusCodes::OK, array $headers = [])
     {
         $this->setContent($content);
@@ -48,10 +41,6 @@ class Response
 
     /**
      * Sets a header for the response.
-     *
-     * @param string $name The name of the header.
-     * @param string|null $value The value of the header. Defaults to null.
-     * @return $this
      */
     public function setHeader(string $name, string $value = null): self
     {
@@ -62,9 +51,6 @@ class Response
 
     /**
      * Sets the content of the response.
-     *
-     * @param string $content The content to set.
-     * @return $this
      */
     public function setContent(string $content): self
     {
@@ -75,10 +61,6 @@ class Response
 
     /**
      * Sets the status code of the response.
-     *
-     * @param int|HttpStatusCodes $statusCode The status code to set.
-     * @return $this
-     * @throws InvalidArgumentException If the status code is invalid.
      */
     public function setStatusCode(int|HttpStatusCodes $statusCode): self
     {
@@ -93,8 +75,6 @@ class Response
 
     /**
      * Sends the headers of the response.
-     *
-     * @return void
      */
     final public function sendHeaders(): void
     {
@@ -105,8 +85,6 @@ class Response
 
     /**
      * Sends the status code of the response.
-     *
-     * @return void
      */
     final public function sendStatusCode(): void
     {
@@ -117,8 +95,6 @@ class Response
 
     /**
      * Sends the content of the response.
-     *
-     * @return void
      */
     final public function sendContent(): void
     {
@@ -127,8 +103,6 @@ class Response
 
     /**
      * Sends the response to the client.
-     *
-     * @return never
      */
     public function send(): never
     {
@@ -140,8 +114,6 @@ class Response
 
     /**
      * Gets the content of the response.
-     *
-     * @return string The content of the response.
      */
     public function getContent(): string
     {
@@ -150,8 +122,6 @@ class Response
 
     /**
      * Gets the headers of the response.
-     *
-     * @return array The headers of the response.
      */
     public function getHeaders(): array
     {
@@ -160,8 +130,6 @@ class Response
 
     /**
      * Gets the status code of the response.
-     *
-     * @return int|HttpStatusCodes The status code of the response.
      */
     public function getStatusCode(): int|HttpStatusCodes
     {
@@ -170,13 +138,14 @@ class Response
 
     /**
      * Applies default headers to the response.
-     *
-     * @return void
      */
     private function applyDefaultHeaders(): void
     {
         $this->setHeader('Cache-Control', 'no-cache');
         $this->setHeader('X-Request-ID', uniqid());
         $this->setHeader('Content-Type', 'plain/text');
+        $this->setHeader('Connection', 'close');
+        $this->setHeader('Date', gmdate('D, d M Y H:i:s T'));
+        $this->setHeader('Server', 'PhpServer/1.0');
     }
 }

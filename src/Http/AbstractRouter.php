@@ -9,23 +9,16 @@ abstract class AbstractRouter implements RouterInterface
 {
     /**
      * The single instance of the router.
-     *
-     * @var RouterInterface|null
      */
     protected static ?RouterInterface $instance = null;
 
     /**
-     * Private constructor to prevent creating a new instance via the `new` operator.
+     * Final private constructor to prevent creating a new instance via the `new` operator.
      */
-    private function __construct()
+    final private function __construct()
     {
     }
 
-    /**
-     * Returns the single instance of the router.
-     *
-     * @return static The single instance of the router.
-     */
     final public static function getInstance(): static
     {
         if (self::$instance === null) {
@@ -35,21 +28,25 @@ abstract class AbstractRouter implements RouterInterface
         return self::$instance;
     }
 
-    /**
-     * Loads routes from the specified path.
-     *
-     * @param string $path The path to the routes file.
-     * @return void
-     */
     public function loadRoutes(string $path): void
     {
         include_once $path;
     }
 
     /**
-     * Private clone method to prevent cloning of the instance.
+     * Final protected clone method to prevent cloning of the instance.
      */
-    private function __clone()
+    final protected function __clone()
     {
+    }
+
+    /**
+     *  Unserialize method to prevent unserializing of the instance throws the exception.
+     *
+     * @throws \Exception
+     */
+    public function __wakeup()
+    {
+        throw new \Exception("Cannot unserialize a singleton.");
     }
 }

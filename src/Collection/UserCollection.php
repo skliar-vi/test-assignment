@@ -12,13 +12,11 @@ class UserCollection extends AbstractCollection
 {
     /**
      * Converts the collection of User entities to an array of normalized data.
-     *
-     * @return array An array of normalized User data.
      */
     public function toArray(): array
     {
         return array_map(
-            fn (User $user) => UserNormaliser::normalise($user),
+            static fn(User $user): array => UserNormaliser::normalise($user),
             self::$items
         );
     }

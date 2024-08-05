@@ -12,8 +12,6 @@ interface KernelInterface
      *
      * This method is responsible for setting up the application,
      * registering routes, and configuring middleware.
-     *
-     * @return void
      */
     public function boot(): void;
 }

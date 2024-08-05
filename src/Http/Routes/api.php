@@ -6,7 +6,7 @@ use App\Controller\Api\ExampleController;
 use App\Controller\Api\UserController;
 use App\Http\Router;
 use App\Middleware\AuthenticationMiddleware;
-use App\Util\Container;
+use App\DI\Container;
 
 /**
  * Main script to initialize controllers, middleware, and set up routes for the application.

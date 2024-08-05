@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Http;
+namespace App\Http\Handler;
 
-use App\Config\ConfigProvider;
+use App\Config\ConfigProviderInterface;
+use App\DI\Container;
 use App\Exception\HttpException;
 use App\Http\Enum\HttpDefaultMessages;
 use App\Http\Enum\HttpStatusCodes;
 use App\Http\Response\JsonResponse;
-use App\Util\Container;
 
 /**
  * ExceptionHandler class handles exceptions and provides an appropriate JSON response.
@@ -18,9 +18,6 @@ class ExceptionHandler
 {
     /**
      * Handles the given exception and sends a JSON response.
-     *
-     * @param \Throwable $e The exception to handle.
-     * @return never
      */
     public function handle(\Throwable $e): never
     {
@@ -46,15 +43,13 @@ class ExceptionHandler
 
     /**
      * Determines if debug mode is enabled.
-     *
-     * @return bool True if debug mode is enabled, false otherwise.
      */
     private function isDebugModeEnabled(): bool
     {
         $container = Container::getInstance();
 
         try {
-            return (bool)($container->make(ConfigProvider::class))->get('DEBUG');
+            return (bool)($container->make(ConfigProviderInterface::class))->get('DEBUG');
         } catch (\Exception $e) {
             return false;
         }

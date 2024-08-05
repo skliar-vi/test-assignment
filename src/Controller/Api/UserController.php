@@ -18,8 +18,6 @@ class UserController
 {
     /**
      * UserController constructor.
-     *
-     * @param UserRepository $userRepository The repository instance to use for user data operations.
      */
     public function __construct(private readonly UserRepository $userRepository)
     {
@@ -27,9 +25,6 @@ class UserController
 
     /**
      * Retrieves all users and returns them as a JSON response.
-     *
-     * @param Request $request The HTTP request instance.
-     * @return JsonResponse A JSON response containing the list of all users.
      */
     public function getAll(Request $request): JsonResponse
     {
@@ -43,9 +38,6 @@ class UserController
     /**
      * Finds a user by their ID and returns the user data as a JSON response.
      *
-     * @param Request $request The HTTP request instance.
-     * @param int $id The ID of the user to find.
-     * @return JsonResponse A JSON response containing the user data.
      * @throws HttpException If the user is not found.
      */
     public function find(Request $request, int $id): JsonResponse

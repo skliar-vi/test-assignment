@@ -10,17 +10,17 @@ use App\Http\Enum\HttpMethods;
 class Route
 {
     /**
-     * @var HttpMethods The HTTP method of the route.
+     * The HTTP method of the route.
      */
     private HttpMethods $method;
 
     /**
-     * @var string The URI of the route.
+     * The URI of the route.
      */
     private string $uri;
 
     /**
-     * @var array The handler for the route.
+     * The handler for the route.
      */
     private array $handler;
 
@@ -31,11 +31,6 @@ class Route
 
     /**
      * Route constructor.
-     *
-     * @param HttpMethods $method The HTTP method of the route.
-     * @param string $uri The URI of the route.
-     * @param array $handler The handler for the route.
-     * @param MiddlewareInterface[] $middlewares The middlewares for the route. Defaults to an empty array.
      */
     public function __construct(HttpMethods $method, string $uri, array $handler, array $middlewares = [])
     {
@@ -47,8 +42,6 @@ class Route
 
     /**
      * Gets the HTTP method of the route.
-     *
-     * @return HttpMethods The HTTP method of the route.
      */
     public function getMethod(): HttpMethods
     {
@@ -57,8 +50,6 @@ class Route
 
     /**
      * Gets the URI of the route.
-     *
-     * @return string The URI of the route.
      */
     public function getUri(): string
     {
@@ -67,8 +58,6 @@ class Route
 
     /**
      * Gets the handler for the route.
-     *
-     * @return array The handler for the route.
      */
     public function getHandler(): array
     {

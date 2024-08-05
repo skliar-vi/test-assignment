@@ -13,8 +13,6 @@ class Request implements RequestInterface
 {
     /**
      * Gets the HTTP method of the request.
-     *
-     * @return string The HTTP method of the request (e.g., GET, POST).
      */
     public function getMethod(): string
     {
@@ -23,8 +21,6 @@ class Request implements RequestInterface
 
     /**
      * Gets the URI of the request.
-     *
-     * @return string The URI of the request.
      */
     public function getUri(): string
     {

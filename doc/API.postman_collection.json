@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "46afe8bc-5b34-475c-b14f-af63a3f23013",
-		"name": "Example PHP API",
+		"_postman_id": "3800ea3d-da8e-49cc-b330-885c0a217a18",
+		"name": "Example PHP API Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "18780263"
 	},
@@ -506,11 +506,6 @@
 		{
 			"key": "baseUrl",
 			"value": "localhost:8080",
-			"type": "string"
-		},
-		{
-			"key": "ko",
-			"value": "",
 			"type": "string"
 		},
 		{

@@ -4,3 +4,6 @@ vendor/*
 .env
 !vendor/autoload.php
 !vendor/composer
+php-cs-fixer
+phpstan
+phpmd

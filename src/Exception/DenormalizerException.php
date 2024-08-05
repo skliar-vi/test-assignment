@@ -3,14 +3,14 @@
 namespace App\Exception;
 
 /**
- * DataSourceException class represents an exception related to data source errors.
+ * DenormalizerException class represents an exception related to denormalization errors.
  */
-class DataSourceException extends \Exception
+class DenormalizerException extends \Exception
 {
     /**
-     * The default error message for data source exceptions.
+     * The default error message for denormalizer exceptions.
      */
-    public const string DEFAULT_MESSAGE = 'Data source error';
+    public const string DEFAULT_MESSAGE = 'Denormalizer error';
 
     public function __construct(
         string     $message = null,

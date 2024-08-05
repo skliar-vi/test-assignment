@@ -9,25 +9,11 @@ use App\Exception\DataSourceException;
  */
 class UserJsonDataSource implements UserDataSourceInterface
 {
-    /**
-     * @var string The file path to the JSON file containing user data.
-     */
-    protected string $filePath;
-
-    /**
-     * UserJsonDataSource constructor.
-     *
-     * @param string $filePath The path to the JSON file containing user data.
-     */
-    public function __construct(string $filePath)
+    public function __construct(protected string $filePath)
     {
-        $this->filePath = $filePath;
     }
 
     /**
-     * Retrieves all users from the JSON file.
-     *
-     * @return array An array of all users.
      * @throws DataSourceException If the file cannot be read or contains invalid JSON.
      */
     public function getAll(): array
@@ -36,10 +22,6 @@ class UserJsonDataSource implements UserDataSourceInterface
     }
 
     /**
-     * Finds a user by specific criteria in the JSON file.
-     *
-     * @param array $criteria The criteria to search for the user.
-     * @return array|null An array representing the user data if found, null otherwise.
      * @throws DataSourceException If the file cannot be read or contains invalid JSON.
      */
     public function findOne(array $criteria): ?array
@@ -67,7 +49,6 @@ class UserJsonDataSource implements UserDataSourceInterface
     /**
      * Retrieves user data from the JSON file.
      *
-     * @return array An array of user data from the JSON file.
      * @throws DataSourceException If the file cannot be read or contains invalid JSON.
      */
     private function getFromFile(): array

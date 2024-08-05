@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http;
 
+use App\Http\Enum\HttpDefaultMessages;
 use App\Http\Enum\HttpMethods;
 use App\Http\Enum\HttpStatusCodes;
 use App\Http\Request\RequestInterface;
@@ -22,12 +23,6 @@ class Router extends AbstractRouter
      */
     private array $routes = [];
 
-    /**
-     * Loads routes from the specified path.
-     *
-     * @param string $path The path to the routes file.
-     * @return void
-     */
     public function loadRoutes(string $path): void
     {
         include_once $path;
@@ -36,25 +31,13 @@ class Router extends AbstractRouter
     /**
      * Registers a GET route.
      *
-     * @param string $uri The URI of the route.
-     * @param callable $handler The handler for the route.
      * @param MiddlewareInterface[] $middlewares The middlewares for the route.
-     * @return Route The registered route.
      */
     public function get(string $uri, callable $handler, array $middlewares = []): Route
     {
         return $this->addRoute(HttpMethods::GET, $uri, $handler, $middlewares);
     }
 
-    /**
-     * Registers a route with the specified method, URI, handler, and middlewares.
-     *
-     * @param HttpMethods $method The HTTP method of the route.
-     * @param string $uri The URI of the route.
-     * @param callable $handler The handler for the route.
-     * @param MiddlewareInterface[] $middlewares The middlewares for the route.
-     * @return Route The registered route.
-     */
     public function addRoute(HttpMethods $method, string $uri, callable $handler, array $middlewares = []): Route
     {
         $route = new Route($method, $uri, $handler, $middlewares);
@@ -63,12 +46,6 @@ class Router extends AbstractRouter
         return $route;
     }
 
-    /**
-     * Dispatches the request to the appropriate route handler.
-     *
-     * @param RequestInterface $request The HTTP request instance.
-     * @return void
-     */
     public function dispatch(RequestInterface $request): void
     {
         $requestMethod = $request->getMethod();
@@ -85,18 +62,19 @@ class Router extends AbstractRouter
                         $response->send();
                     }
                 });
-                return;
+
+                break;
             }
         }
 
-        (new JsonResponse(['error' => 'Not found'], HttpStatusCodes::NOT_FOUND))->send();
+        (new JsonResponse(
+            ['error' => HttpDefaultMessages::NOT_FOUND],
+            HttpStatusCodes::NOT_FOUND)
+        )->send();
     }
 
     /**
      * Converts a route URI with parameters to a regex pattern.
-     *
-     * @param string $uri The URI of the route.
-     * @return string The regex pattern.
      */
     private function convertToRegex(string $uri): string
     {
@@ -107,9 +85,6 @@ class Router extends AbstractRouter
      * Handles the middlewares for the route and proceeds to the final handler.
      *
      * @param MiddlewareInterface[] $middlewares The middlewares for the route.
-     * @param RequestInterface $request The HTTP request instance.
-     * @param \Closure $finalHandler The final handler to call after middlewares.
-     * @return void
      */
     private function handleMiddlewares(array $middlewares, RequestInterface $request, \Closure $finalHandler): void
     {
@@ -127,10 +102,6 @@ class Router extends AbstractRouter
 
     /**
      * Calls the route handler with prepared arguments
-     *
-     * @param callable $handler The handler for the route.
-     * @param array $parametersArray The parameters provided to the handler.
-     * @return mixed The result of the handler.
      */
     private function callHandler(callable $handler, array $parametersArray): mixed
     {

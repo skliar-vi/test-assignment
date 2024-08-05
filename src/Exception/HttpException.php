@@ -14,18 +14,10 @@ use App\Http\Enum\HttpStatusCodes;
 class HttpException extends \Exception
 {
     /**
-     * @var int|HttpStatusCodes The HTTP status code associated with the exception.
+     * The HTTP status code associated with the exception.
      */
     public int|HttpStatusCodes $httpCode;
 
-    /**
-     * HttpException constructor.
-     *
-     * @param string $message The error message. Defaults to an empty string.
-     * @param int $code The error code. Defaults to 0.
-     * @param \Throwable|null $previous The previous throwable used for exception chaining. Defaults to null.
-     * @param int|HttpStatusCodes $httpCode The HTTP status code. Defaults to HttpStatusCodes::INTERNAL_SERVER_ERROR.
-     */
     public function __construct(
         string              $message = '',
         int                 $code = 0,

@@ -12,6 +12,11 @@
             "email": "vsklyar4@gmail.com"
         }
     ],
+    "config": {
+        "platform": {
+            "php": "8.3.9"
+        }
+    },
     "require": {},
     "require-dev": {}
 }

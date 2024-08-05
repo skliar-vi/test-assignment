@@ -4,34 +4,31 @@ declare(strict_types=1);
 
 namespace App\Config;
 
-class ConfigProvider
+/**
+ * ConfigProvider class provides configuration settings for the application.
+ */
+final class ConfigProvider implements ConfigProviderInterface
 {
     private array $config;
 
-    public function __construct(array $defaultConfig = [])
+    public function __construct(array $defaultConfig = [], string $envFilePath = null)
     {
         $this->config = $defaultConfig;
-        $this->loadEnvConfig();
+        $this->loadEnvConfig($envFilePath);
     }
 
     /**
-     * @return void
+     * Loads environment-specific configuration from a file.
      */
-    private function loadEnvConfig(): void
+    private function loadEnvConfig(?string $envFilePath): void
     {
-        $envFile = __DIR__ . '/../../.env';
+        if (is_string($envFilePath) && file_exists($envFilePath)) {
+            $envConfig = parse_ini_file($envFilePath);
 
-        if (file_exists($envFile)) {
-            $envConfig = parse_ini_file($envFile);
             $this->config = array_merge($this->config, $envConfig);
         }
     }
 
-    /**
-     * @param string $key
-     * @param mixed $default
-     * @return mixed
-     */
     public function get(string $key, mixed $default = null): mixed
     {
         return $this->config[$key] ?? $default;
