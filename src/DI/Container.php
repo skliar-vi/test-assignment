@@ -16,7 +16,7 @@ final class Container
      *
      * @var Container|null
      */
-    public static ?Container $instance = null;
+    private static ?Container $instance = null;
 
     /**
      * The array of bindings, where each binding is a resolver callable.

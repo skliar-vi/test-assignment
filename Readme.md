@@ -65,8 +65,8 @@ For testing the API, you can use the Postman collection located in the `doc` dir
 Here's an example `.env` file configuration:
 ```dotenv
 DEBUG=0
-USER_DATA_SOURCE_PATH=
-ROUTES_PATH=
+USER_DATA_SOURCE_PATH=data/users.json
+ROUTES_PATH=src/Http/Routes/api.php
 ```
 
 ## Notes

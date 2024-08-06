@@ -25,7 +25,9 @@ final class ConfigProvider implements ConfigProviderInterface
         if (is_string($envFilePath) && file_exists($envFilePath)) {
             $envConfig = parse_ini_file($envFilePath);
 
-            $this->config = array_merge($this->config, $envConfig);
+            $this->config = array_merge(
+                array_filter($envConfig, fn($key) => $envConfig[$key], ARRAY_FILTER_USE_KEY),
+                $envConfig);
         }
     }
 

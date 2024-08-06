@@ -31,7 +31,7 @@ $container->bind(ConfigProviderInterface::class, function () {
         'DEBUG' => false,
         'ROUTES_PATH' => realpath(__DIR__ . '/Http/routes/api.php'),
     ],
-    realpath(__DIR__ . '/../.env')
+    realpath(__DIR__ . '/../.env') ?: null
     );
 });
 $container->bind(UserDataSourceInterface::class, function ($container) {
